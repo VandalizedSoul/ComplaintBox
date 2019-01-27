@@ -4,6 +4,8 @@ from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.template.context_processors import csrf
+from datetime import datetime
+from .models import Complain,Citizen
 
 def printf(request):
 	c = {}
@@ -20,6 +22,15 @@ def newcomplain(request):
 	c.update(csrf(request))
 	return render_to_response('newcomplain.html', c)
 
+def addComplain(request):
+	ccatego=request.POST.get('category','')
+	cdetail=request.POST.get('details','')
+	cadd=request.POST.get('location','')
+	ctype=request.POST.get('comps','')
+	print(ctype)
+	c=Complain(complain_type=ctype,complain_description=cdetail,complain_address=cadd,complain_category=ccatego)
+	c.save()
+	return render(request,'complains.html')
 def home(request):
 	c = {}
 	c.update(csrf(request))

@@ -3,21 +3,24 @@
  {% block body %}
 <div class="d-flex">
 	<div class=" text img p-md-5">
+		<form method="post" action="/demo/addComplain/">{% csrf_token %}
 		Select the category*
-		<select>
-			<option>Water</option>
-			<option>Drainage</option>
-			<option>Tree</option>
-			<option>Garbage</option>
-		</select><br>
+		<select name="category">
+			<option value="water">Water</option>
+			<option value="drainage">Drainage</option>
+			<option value="tree">Tree</option>
+			<option value="garbage">Garbage</option>
+			<option value="other">Other</option>
+		</select><br><br>
 		Enter the details here*
-		<input type="textarea" name="complain"/><br>
+		<input type="textarea" name="details"/><br/><br/>
 		Location
-		<input type="text"><br>
+		<input type="text" name="location"><br><br>
 		Is this complain or Suggestion:<br>
-		<input type="radio" name="comp">Complain
-		<input type="radio" name="comp">Suggestion <br>
+		<input type="radio" name="comps" value="complain">Complain
+		<input type="radio" name="comps" value="suggestion">Suggestion <br><br>
 		<input type="submit" >
+	   </form>
 	</div>
 	<div class="author-info text p-4 p-md-5 mt-5 mb-5">
 		<div class="desc">
