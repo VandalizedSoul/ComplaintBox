@@ -1,4 +1,5 @@
 from django.db import models
+from ComplainBox.settings import *
 import datetime
 # Create your models here.
 class Citizen(models.Model):
@@ -18,5 +19,7 @@ class Complain(models.Model):
  complain_priority=models.IntegerField(default=1)
  complain_rating=models.IntegerField(default=0)
  post_to_wall=models.BooleanField(default=False)
- date_time=models.DateTimeField(blank=True)
+ date_time=models.DateTimeField(default=datetime.date.today(), blank=True)
  complain_count=models.IntegerField(default=1)
+ complain_uname=models.CharField(max_length=30,null=True,default='ravi')
+ complain_image = models.CharField(max_length=200,null=True)

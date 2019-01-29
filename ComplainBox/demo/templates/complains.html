@@ -15,6 +15,7 @@
 			<section class="ftco-section-3">
 				<div class="photograhy">
 					<div class="row">
+					
 						<div class="col-md-4 ftco-animate">
 							<a href="/static/demo/images/problem1.jpeg" class="photography-entry img image-popup d-flex justify-content-start align-items-end" style="background-image: url(/static/demo/images/problem1.jpeg);">
 								<div class="overlay"></div>
@@ -24,6 +25,7 @@
 								</div>
 							</a>
 						</div>
+						
 						<div class="col-md-4 ftco-animate">
 							<a href="/static/demo/images/problem2.jpeg" class="photography-entry img image-popup d-flex justify-content-start align-items-end" style="background-image: url(/static/demo/images/problem2.jpeg);">
 								<div class="overlay"></div>
@@ -42,7 +44,18 @@
 								</div>
 							</a>
 						</div>
-						
+						{% for complain in complains %}
+					
+						<div class="col-md-4 ftco-animate">
+								<a href="{{complain}}" class="photography-entry img image-popup d-flex justify-content-start align-items-end" style="background-image: url(/static/demo/images/problem3.jpeg);">
+									<div class="overlay"></div>
+									<div class="text ml-4 mb-4">
+										<h3>Complain 04</h3>
+										<span class="tag">Water Wastage</span>
+									</div>
+								</a>
+							</div>
+						{% endfor %}
 					
 					
 					</div>

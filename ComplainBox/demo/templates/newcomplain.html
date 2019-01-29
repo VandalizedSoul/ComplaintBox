@@ -3,7 +3,7 @@
  {% block body %}
 <div class="d-flex">
 	<div class=" text img p-md-5">
-		<form method="post" action="/demo/addComplain/">{% csrf_token %}
+		<form method="post" action="/demo/addComplain/" enctype="multipart/form-data">{% csrf_token %}
 		Select the category*
 		<select name="category">
 			<option value="water">Water</option>
@@ -12,6 +12,8 @@
 			<option value="garbage">Garbage</option>
 			<option value="other">Other</option>
 		</select><br><br>
+		Select the image file
+		<input type="file" name="image"/><br/><br/>
 		Enter the details here*
 		<input type="textarea" name="details"/><br/><br/>
 		Location
