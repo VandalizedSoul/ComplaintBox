@@ -4,7 +4,9 @@ from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.template.context_processors import csrf
-import datetime
+import datetime 
+import string
+import re
 from .models import Complain,Citizen
 from django.core.files.storage import FileSystemStorage
 
@@ -30,11 +32,9 @@ def addComplain(request):
 	cadd=request.POST.get('location','')
 	ctype=request.POST.get('comps','')
 	file1 = request.FILES["image"]
-	if file1.size > 2 * 1024 * 1024:
-		c["message_of_size"] = "File too large. Size should not exceed 2 MB."
-        	
 	fs = FileSystemStorage()
-	filename = "./demo/static/complains/" + username  + str(datetime.date.today()) + ".png"
+	st=str(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")).replace(':','-')
+	filename = "./demo/static/complains/" + username+st +".png"
 	if fs.exists(filename):
 	    fs.delete(filename)
 	print("hiiiiii")
@@ -42,7 +42,7 @@ def addComplain(request):
 	file2 = fs.save(filename, file1)
 	c=Complain(complain_type=ctype,complain_image=filename,complain_description=cdetail,complain_address=cadd,complain_category=ccatego)
 	c.save()
-	return render(request,'complains.html')
+	return HttpResponseRedirect('/demo/complain')
 def home(request):
 	c = {}
 	c.update(csrf(request))
@@ -60,8 +60,10 @@ def complain(request):
 	list1 =[]
 	for c in complain:
 		list1.append(c.complain_image[int(c.complain_image.find('/static')):])
-	time=datetime.datetime.now()
-	return render_to_response('complains.html',{'complains':list1},{'time':time})
+		print(c.complain_image[int(c.complain_image.find('/static')):])
+	time1=datetime.datetime.now()
+	print(time1)
+	return render_to_response('complains.html',{'complains':list1,'time':time1})
 
 def rewards(request):
 	c = {}
