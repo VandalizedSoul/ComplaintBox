@@ -18,5 +18,5 @@ class Complain(models.Model):
  complain_priority=models.IntegerField(default=1)
  complain_rating=models.IntegerField(default=0)
  post_to_wall=models.BooleanField(default=False)
- date_time=models.DateTimeField(default=datetime.date.today(), blank=True)
+ date_time=models.DateTimeField(blank=True)
  complain_count=models.IntegerField(default=1)
