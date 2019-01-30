@@ -47,10 +47,10 @@
 						{% for complain in complains %}
 					
 						<div class="col-md-4 ftco-animate">
-								<a href="{{complain}}" class="photography-entry img image-popup d-flex justify-content-start align-items-end" style="background-image: url(/static/demo/images/problem3.jpeg);">
+								<a href="{{complain}}" class="photography-entry img image-popup d-flex justify-content-start align-items-end" style="background-image: url({{complain}});">
 									<div class="overlay"></div>
 									<div class="text ml-4 mb-4">
-										<h3>Complain 04</h3>
+										<h3>Complain of {{time}}</h3>
 										<span class="tag">Water Wastage</span>
 									</div>
 								</a>
