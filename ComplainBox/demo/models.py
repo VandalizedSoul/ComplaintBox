@@ -23,5 +23,3 @@ class Complain(models.Model):
  complain_count=models.IntegerField(default=1)
  complain_uname=models.CharField(max_length=30,null=True,default='ravi')
  complain_image = models.CharField(max_length=200,null=True)
-
- 
