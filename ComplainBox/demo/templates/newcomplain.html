@@ -1,6 +1,34 @@
 
  {% extends 'base.html' %}
  {% block body %}
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script>
+	$(document).ready(function(){
+	  $("#detail").blur(function(){
+	var det = document.getElementById("detail").value;
+	const CLIENT_TOKEN="GVULD55QMRASSPSJD6D2FELJY4AHFXWG";
+	const q = encodeURIComponent(det);
+	const uri = 'https://api.wit.ai/message?q=' + q;
+	const auth = 'Bearer ' + CLIENT_TOKEN;
+		fetch(uri, {headers: {Authorization: auth}})
+  			.then(res => res.json())
+  			.then(function(res) {
+				var dept=res['entities']['intent'][0]['value'];
+			console.log(dept);
+			$("#msg").show();
+			document.getElementById("p1").innerHTML = dept;
+
+		    });
+		
+	  });
+	});
+
+   $(document).ready(function(){
+  
+    $("#msg").hide();
+  
+});
+</script>
 <div class="d-flex">
 	<div class=" text img p-md-5">
 		<form method="post" action="/demo/addComplain/" enctype="multipart/form-data">{% csrf_token %}
@@ -15,9 +43,11 @@
 		Select the image file
 		<input type="file" name="image"/><br/><br/>
 		Enter the details here*
-		<input type="textarea" name="details"/><br/><br/>
+		<input type="textarea" id="detail"name="details"/><br/><br/>
+		<h6 id="msg">We detected that department is:&nbsp;<h6 id="p1"> </h6></h6>
+		
 		Location
-		<input type="text" name="location"><br><br>
+		<input type="text" id="location" name="location"><br><br>
 		Is this complain or Suggestion:<br>
 		<input type="radio" name="comps" value="complain">Complain
 		<input type="radio" name="comps" value="suggestion">Suggestion <br><br>
@@ -43,5 +73,6 @@
 		</div>
 	</div>
 </div>
+
 {% endblock %}
                   
