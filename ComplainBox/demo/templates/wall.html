@@ -18,7 +18,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="blog-entry ftco-animate d-md-flex">
-							<a href="single.html" class="img img-2" style="background-image: url(/static/demo/images/problem2.jpeg);"></a>
+							<a href="/demo/single" class="img img-2" style="background-image: url(/static/demo/images/problem2.jpeg);"></a>
 							<div class="text text-2 p-4">
 								<h3 class="mb-2"><a href="single.html">Water is being wasted.</a></h3>
 								<div class="meta-wrap">
@@ -33,58 +33,25 @@
 							</div>
 						</div>
 					</div>
+					{% for complain,image in combined %}
 					<div class="col-md-12">
 							<div class="blog-entry ftco-animate d-md-flex">
-								<a href="single.html" class="img img-2" style="background-image: url(/static/demo/images/problem2.jpeg);"></a>
+								<a href="/demo/single/{{complain.id}}" class="img img-2" style="background-image: url({{image}});"></a>
 								<div class="text text-2 p-4">
-									<h3 class="mb-2"><a href="single.html">Water is being wasted.</a></h3>
+									<h3 class="mb-2"><a href="/demo/single/{{complain.id}}">{{complain.complain_category}} Problem</a></h3>
 									<div class="meta-wrap">
 										<p class="meta">
-											<span>Dec 14, 2018</span>
-											<span>New Society,Nadiad</span>
-											<span>Other 5 had this problem</span>
+											<span>{{complain.date_time}}</span>
+											<span>{{complain.complain_address}}</span>
+											<span>Other {{complain.complain_count}} had this problem</span>
 										</p>
 									</div>
-									<p class="mb-4">The water is being flown on all over road from broken pipe. Please fix it.</p>
-									<p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+									<p class="mb-4">{{complain.complain_description}}</p>
+									<p><a href="/demo/single/{{complain.id}}" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-12">
-								<div class="blog-entry ftco-animate d-md-flex">
-									<a href="single.html" class="img img-2" style="background-image: url(/static/demo/images/problem2.jpeg);"></a>
-									<div class="text text-2 p-4">
-										<h3 class="mb-2"><a href="single.html">Water is being wasted.</a></h3>
-										<div class="meta-wrap">
-											<p class="meta">
-												<span>Dec 14, 2018</span>
-												<span>New Society,Nadiad</span>
-												<span>Other 5 had this problem</span>
-											</p>
-										</div>
-										<p class="mb-4">The water is being flown on all over road from broken pipe. Please fix it.</p>
-										<p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-12">
-									<div class="blog-entry ftco-animate d-md-flex">
-										<a href="single.html" class="img img-2" style="background-image: url(/static/demo/images/problem2.jpeg);"></a>
-										<div class="text text-2 p-4">
-											<h3 class="mb-2"><a href="single.html">Water is being wasted.</a></h3>
-											<div class="meta-wrap">
-												<p class="meta">
-													<span>Dec 14, 2018</span>
-													<span>New Society,Nadiad</span>
-													<span>Other 5 had this problem</span>
-												</p>
-											</div>
-											<p class="mb-4">The water is being flown on all over road from broken pipe. Please fix it.</p>
-											<p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
-										</div>
-									</div>
-								</div>
-				
+					{% endfor %}	
 				</div><!-- END-->
 				<div class="row">
 					<div class="col">
@@ -154,4 +121,4 @@
 	</div>
 </section>
 
-			{% endblock %} 
+{% endblock %} 

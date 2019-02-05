@@ -23,3 +23,9 @@ class Complain(models.Model):
  complain_count=models.IntegerField(default=1)
  complain_uname=models.CharField(max_length=30,null=True,default='ravi')
  complain_image = models.CharField(max_length=200,null=True)
+
+class Feedback(models.Model):
+    feed_complain_id=models.IntegerField(default=1)
+    feed_username=models.CharField(max_length=30,null=True,default='ravi')
+    feed_feedback=models.CharField(max_length=200)
+    feed_date_time=models.DateTimeField(default=datetime.datetime.now(), blank=True)
