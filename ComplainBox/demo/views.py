@@ -7,9 +7,14 @@ from django.template.context_processors import csrf
 import datetime 
 import string
 import re
+from wit import Wit
 from .models import Complain,Citizen
 from django.core.files.storage import FileSystemStorage
 
+access_token="GVULD55QMRASSPSJD6D2FELJY4AHFXWG"
+client = Wit(access_token)
+entity="intent"
+message=""
 def printf(request):
 	c = {}
 	c.update(csrf(request))
@@ -23,7 +28,8 @@ def about(request):
 def newcomplain(request):
 	c = {}
 	c.update(csrf(request))
-	return render_to_response('newcomplain.html', c)
+	message=""
+	return render_to_response('newcomplain.html',{'message':message},c)
 
 def addComplain(request):
 	username='ravi'
