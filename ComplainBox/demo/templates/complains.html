@@ -44,14 +44,14 @@
 								</div>
 							</a>
 						</div>
-						{% for complain in complains %}
+						{% for complain,image in combined %}
 					
 						<div class="col-md-4 ftco-animate">
-								<a href="{{complain}}" class="photography-entry img image-popup d-flex justify-content-start align-items-end" style="background-image: url({{complain}});">
+								<a href="/demo/single/{{complain.id}}" class="photography-entry img img-2 d-flex justify-content-start align-items-end" style="background-image: url({{image}});">
 									<div class="overlay"></div>
 									<div class="text ml-4 mb-4">
 										<h3>Complain of {{time}}</h3>
-										<span class="tag">Water Wastage</span>
+										<span class="tag">{{complain.complain_category}}</span>
 									</div>
 								</a>
 							</div>

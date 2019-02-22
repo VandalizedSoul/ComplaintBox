@@ -29,28 +29,28 @@ def about(request):
 def newcomplain(request):
 	c = {}
 	c.update(csrf(request))
-	message=""
-	return render_to_response('newcomplain.html',{'message':message},c)
+	return render_to_response('newcomplain.html',c)
 
 @csrf_exempt
 def addComplain(request):
-	username='ravi'
-	ccatego=request.POST.get('category','')
-	cdetail=request.POST.get('details','')
-	cadd=request.POST.get('location','')
-	ctype=request.POST.get('comps','')
-	file1 = request.FILES["image"]
-	fs = FileSystemStorage()
-	st=str(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")).replace(':','-')
-	filename = "./demo/static/complains/" + username+st +".png"
-	if fs.exists(filename):
-	    fs.delete(filename)
-	print("hiiiiii")
-	print(filename)
-	file2 = fs.save(filename, file1)
-	c=Complain(complain_type=ctype,complain_image=filename,complain_description=cdetail,complain_address=cadd,complain_category=ccatego)
-	c.save()
-	return HttpResponseRedirect('/demo/complain')
+ username='ravi'
+ ccatego=request.POST.get('category','')
+ cdetail=request.POST.get('details','')
+ cadd=request.POST.get('location','')
+ ctype=request.POST.get('comps','')
+ file1 = request.FILES.get("image")
+ filename=""
+ if file1 != None:
+  fs = FileSystemStorage()
+  st=str(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")).replace(':','-')
+  filename = "./demo/static/complains/" + username+st +".png"
+  if fs.exists(filename):
+   fs.delete(filename)
+  print(filename)
+  file2 = fs.save(filename, file1)
+ c=Complain(complain_type=ctype,complain_image=filename,post_to_wall=1,complain_description=cdetail,complain_address=cadd,complain_category=ccatego)
+ c.save()
+ return HttpResponseRedirect('/demo/complain')
 
 @csrf_exempt
 def addFeedback(request,comp_id='1'):
@@ -71,7 +71,7 @@ def wall(request):
 	c = {}
 	c.update(csrf(request))
 	uname='ravi'
-	complain=Complain.objects.filter(complain_uname=uname,post_to_wall=1)
+	complain=Complain.objects.filter(post_to_wall=1)
 	list1 =[]
 	for c in complain:
 		list1.append(c.complain_image[int(c.complain_image.find('/static')):])
@@ -87,8 +87,9 @@ def complain(request):
 		list1.append(c.complain_image[int(c.complain_image.find('/static')):])
 		print(c.complain_image[int(c.complain_image.find('/static')):])
 	time1=datetime.datetime.now()
+	combined=zip(complain,list1)
 	print(time1)
-	return render_to_response('complains.html',{'complains':list1,'time':time1})
+	return render_to_response('complains.html',{'combined':combined,'time':time1})
 
 def rewards(request):
 	c = {}
