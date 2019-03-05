@@ -7,9 +7,9 @@ from django.contrib import auth
 from django.template.context_processors import csrf
 import datetime 
 import string
-import re
+import re,requests
 from wit import Wit
-from .models import Complain,Citizen,Feedback
+from .models import Complain,Citizen,Feedback,Support
 from django.core.files.storage import FileSystemStorage
 
 access_token="GVULD55QMRASSPSJD6D2FELJY4AHFXWG"
@@ -35,11 +35,16 @@ def newcomplain(request):
 def addComplain(request):
  username='ravi'
  ccatego=request.POST.get('category','')
+ request.session['cat']=ccatego
  cdetail=request.POST.get('details','')
+ request.session['detail']=cdetail
  cadd=request.POST.get('location','')
+ request.session['add']=cadd
  ctype=request.POST.get('comps','')
+ request.session['type']=ctype
  file1 = request.FILES.get("image")
  filename=""
+ fnm=""
  if file1 != None:
   fs = FileSystemStorage()
   st=str(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")).replace(':','-')
@@ -48,8 +53,14 @@ def addComplain(request):
    fs.delete(filename)
   print(filename)
   file2 = fs.save(filename, file1)
- c=Complain(complain_type=ctype,complain_image=filename,post_to_wall=1,complain_description=cdetail,complain_address=cadd,complain_category=ccatego)
- c.save()
+  fnm=filename[int(filename.find('/static')):]
+ else:
+  fnm="/static/complains/NoImage.png"
+ related=Complain.objects.filter(complain_address=cadd,complain_category=ccatego,complain_status="pending").order_by('-complain_count')
+ if related != None :
+  return render_to_response('newcomplain.html',{'suggestions':related})
+ c=Complain(complain_type=ctype,complain_image=fnm,post_to_wall=1,complain_description=cdetail,complain_address=cadd,complain_category=ccatego)
+ c.save()	
  return HttpResponseRedirect('/demo/complain')
 
 @csrf_exempt
@@ -60,6 +71,24 @@ def addFeedback(request,comp_id='1'):
 	f.save()
 	url="/demo/single/"+comp_id
 	return HttpResponseRedirect(url)
+
+@csrf_exempt
+def increase(request):
+	c = {}
+	c.update(csrf(request))
+	compid=request.POST.get('id','')
+	print("this is   " +compid)
+	uid=1
+	s=Support(comp_id=int(compid),u_id=uid)
+	complain=Complain.objects.filter(id=compid)
+	count=1
+	for c in complain:
+		count=c.complain_count
+		count+=1
+	c=Complain.objects.filter(id=compid).update(complain_count=count)
+	s.save()
+	return HttpResponseRedirect("/demo/new/")
+
 
 def home(request):
 	c = {}
@@ -72,24 +101,14 @@ def wall(request):
 	c.update(csrf(request))
 	uname='ravi'
 	complain=Complain.objects.filter(post_to_wall=1)
-	list1 =[]
-	for c in complain:
-		list1.append(c.complain_image[int(c.complain_image.find('/static')):])
-		print(c.complain_image[int(c.complain_image.find('/static')):])
-	combined=zip(complain,list1)
-	return render_to_response('wall.html', {'combined':combined},c)
+	return render_to_response('wall.html', {'complain':complain},c)
 
 def complain(request):
 	uname='ravi'
 	complain=Complain.objects.filter(complain_uname=uname)
-	list1 =[]
-	for c in complain:
-		list1.append(c.complain_image[int(c.complain_image.find('/static')):])
-		print(c.complain_image[int(c.complain_image.find('/static')):])
 	time1=datetime.datetime.now()
-	combined=zip(complain,list1)
 	print(time1)
-	return render_to_response('complains.html',{'combined':combined,'time':time1})
+	return render_to_response('complains.html',{'complain':complain,'time':time1})
 
 def rewards(request):
 	c = {}
@@ -101,10 +120,8 @@ def single(request,comp_id='1'):
 	c.update(csrf(request))
 	uname='ravi'
 	complain=Complain.objects.filter(id=comp_id)
-	for ci in complain:
-		img=ci.complain_image[int(ci.complain_image.find('/static')):]
 	comments=Feedback.objects.filter(feed_complain_id=comp_id,feed_username=uname)
-	return render_to_response('single.html',{'complain':complain,'img':img,'comments':comments}, c)
+	return render_to_response('single.html',{'complain':complain,'comments':comments}, c)
 
 
 def contact(request):
@@ -112,3 +129,14 @@ def contact(request):
 	c.update(csrf(request))
 	return render_to_response('contact.html', c)
 # Create your views here.
+
+def notification(request):
+	c={}
+	c.update(csrf(request))
+	return render_to_response('notification.html',c)
+
+def suggestion(request):
+	c={}
+	c.update(csrf(request))
+
+	return render_to_response('suggestion.html',c)

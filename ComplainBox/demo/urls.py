@@ -1,5 +1,5 @@
 from django.urls import path
-from demo.views import printf,about,newcomplain,home,contact,complain,rewards,wall,addComplain,single,addFeedback
+from demo.views import increase,notification,suggestion,printf,about,newcomplain,home,contact,complain,rewards,wall,addComplain,single,addFeedback
 from django.contrib.auth import views as auth_views
 from django.conf.urls import url
 urlpatterns = [
@@ -14,5 +14,8 @@ url(r'^complain/$', complain),
 url(r'^rewards/$', rewards),
 url(r'^wall/$', wall),
 url(r'^addComplain/$', addComplain),
+url(r'^notification/$', notification),
+url(r'^suggestion/$', suggestion),
+url(r'^increase/$', increase),
 
 ]
