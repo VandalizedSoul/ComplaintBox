@@ -11,6 +11,7 @@ import re
 from wit import Wit
 from demo.models import Complain, Citizen, Feedback
 from django.core.files.storage import FileSystemStorage
+from .filters import ComplainFilter     
 
 access_token = "GVULD55QMRASSPSJD6D2FELJY4AHFXWG"
 client = Wit(access_token)
@@ -19,13 +20,13 @@ message = ""
 
 
 def newcomplain(request):
- complain = Complain.objects.all()
- list1 = []
- for c in complain:
-    list1.append(c.complain_image[int(c.complain_image.find('/static')):])
- combined = zip(complain, list1)
+ #status=request.GET["status"]
+ #complain = Complain.objects.filter(complain_status=status)
+ complain=Complain.objects.all()
+ complain1=ComplainFilter(request.GET,queryset=complain)
+ print(complain1)
  time1 = datetime.datetime.now()
- return render_to_response('complainArrived.html', {'combined': combined, 'time': time1})
+ return render_to_response('complainArrived.html', {'complain': complain, 'time': time1,'filter':complain1})
 
 
 def single(request, comp_id='1'):
@@ -33,12 +34,9 @@ def single(request, comp_id='1'):
  c.update(csrf(request))
  uname = 'ravi'
  complain = Complain.objects.filter(id=comp_id)
- for ci in complain:
-    img = ci.complain_image[int(ci.complain_image.find('/static')):]
-    comments = Feedback.objects.filter(
-        feed_complain_id=comp_id, feed_username=uname)
+ comments = Feedback.objects.filter(feed_complain_id=comp_id, feed_username=uname)
  print("ha moju ha")
- return render_to_response('singleO.html', {'complain': complain, 'img': img, 'comments': comments}, c)
+ return render_to_response('singleO.html', {'complain': complain, 'comments': comments}, c)
 
 
 @csrf_exempt
@@ -46,6 +44,16 @@ def post(request, comp_id='1'):
     complain = Complain.objects.filter(id=comp_id).update(post_to_wall=1)
     url = "/office/single/"+comp_id
     return HttpResponseRedirect(url)
+
+@csrf_exempt
+def redirect(request):
+ c = {}
+ c.update(csrf(request))
+ category = request.POST.get('category', '')
+ id = request.POST.get('id', '')
+ complain=Complain.objects.filter(id=id).update(complain_category=category)
+ url = "/office/single/"+id
+ return HttpResponseRedirect(url)
 
 
 @csrf_exempt
@@ -78,6 +86,8 @@ def addPost(request):
    fs.delete(filename)
   print(filename)
   file2 = fs.save(filename, file1)
- c=Complain(complain_type=ctype,complain_image=filename,post_to_wall=1,complain_description=cdetail,complain_address=cadd,complain_category=ccatego)
+ fnm=filename[int(filename.find('/static')):]
+ c=Complain(complain_type=ctype,complain_image=fnm,post_to_wall=1,complain_description=cdetail,complain_address=cadd,complain_category=ccatego)
  c.save()
  return HttpResponseRedirect('/office/complains')
+

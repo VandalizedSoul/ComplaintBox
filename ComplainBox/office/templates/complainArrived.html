@@ -13,16 +13,22 @@
 		</div>
 	</div>
 </section>
-	  Filters
-		<section class="ftco-section-3">
+<form method="get">
+	{{ filter.form.as_p }}
+	<button type="submit">Search</button>
+</form>
+
+
+
+	<section class="ftco-section-3">
 			<div class="photograhy">
 				<div class="row">
 		
 		
-		{% for complain,image in combined %}
+		{% for complain in filter.qs %}
 					
 						<div class="col-md-4 ftco-animate">
-								<a href="/office/single/{{complain.id}}" class="photography-entry img img-2 d-flex justify-content-start align-items-end" style="background-image: url({{image}});">
+								<a href="/office/single/{{complain.id}}" class="photography-entry img img-2 d-flex justify-content-start align-items-end" style="background-image: url({{complain.complain_image}});">
 									<div class="overlay"></div>
 									<div class="text ml-4 mb-4">
 										<h3>Complain of {{time}}</h3>

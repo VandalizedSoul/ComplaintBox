@@ -23,8 +23,10 @@
 								<span>Other {{comp.complain_count}} had this problem</span>
 							</p>
 	            <p>
-	              <img src="{{img}}" alt="" class="img-fluid">
-	            </p>
+	              <img src="{{comp.complain_image}}" alt="" class="img-fluid">
+							</p>
+							<span><h3>Process is in  {{comp.complain_status}} status </h3></span>	
+							<span><h3>Process is being handled by {{comp.complain_category}} department </h3></span>
 							<p>{{comp.complain_description}}</p>
 							{% if comp.post_to_wall == 0 %}
 							<form action="/office/post/{{comp.id}}">
@@ -36,6 +38,19 @@
 							</form>
 							{% endif %}
 							
+							<form action="/office/redirect/" method="POST" >{% csrf_token %}
+								redirect to different department:
+								<select name="category">
+									<option value="water">Water</option>
+									<option value="drainage">Drainage</option>
+									<option value="tree">Tree</option>
+									<option value="garbage">Garbage</option>
+									<option value="other">Other</option>
+								</select>
+								<input type="hidden" name="id" value={{comp.id}}>
+								<input type="submit" value="redirect">
+							</form>
+
 	            <div class="pt-5 mt-5">
 	              <h3 class="mb-5 font-weight-bold">3 Comments</h3>
 	              <ul class="comment-list">

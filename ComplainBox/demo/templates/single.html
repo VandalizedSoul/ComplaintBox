@@ -18,14 +18,17 @@
 	    			<div class="col-lg-8 ftco-animate">
 	            <h2 class="mb-3 font-weight-bold">The Problem</h2>
 	            <p class="meta">
-								<span>On {{comp.date_time}}</span>
+								<span>On {{comp.date_time}}</span>&nbsp;
 								<span>At {{comp.complain_address}}</span><br>
-								<span>Other {{comp.complain_count}} had this problem</span>
+								<span>Other {{comp.complain_count}} had this problem</span> <br>
+								
 							</p>
 	            <p>
-	              <img src="{{img}}" alt="" class="img-fluid">
+	              <img src="{{comp.complain_image}}" alt="" class="img-fluid">
 	            </p>
-	            <p>{{comp.complain_description}}</p>
+							<span><h3>Process is in  {{comp.complain_status}} status </h3></span>	
+							<span><h3>Process is being handled by {{comp.complain_category}} department </h3></span>	
+							<p>{{comp.complain_description}}</p>
 	   
 
 	            <div class="pt-5 mt-5">

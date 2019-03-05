@@ -22,11 +22,9 @@
 		
 	  });
 	});
-
+    
    $(document).ready(function(){
-  
-    $("#msg").hide();
-  
+	$("#msg").hide();
 });
 </script>
 <div class="d-flex">
@@ -51,8 +49,23 @@
 		Is this complain or Suggestion:<br>
 		<input type="radio" name="comps" value="complain">Complain
 		<input type="radio" name="comps" value="suggestion">Suggestion <br><br>
-		<input type="submit" >
-	   </form>
+		
+		<input type="submit" id="reg" >
+	</form>
+	   {% for rel in suggestions %}
+	   	   <form action="/demo/increase/" method="post">{% csrf_token %}
+			<input type="hidden" name="id" id="id" value={{rel.id}}>{{rel.id}}
+				<p id="de">{{rel.complain_description}}</p> 
+				<p id="cat"> {{rel.complain_category}}</p>
+				<p id="city">{{rel.complain_address}}</p>
+				<input type="submit" value="+">
+			
+		</form>
+	    <br>
+	   {% endfor %}
+	
+	
+	
 	</div>
 	<div class="author-info text p-4 p-md-5 mt-5 mb-5">
 		<div class="desc">

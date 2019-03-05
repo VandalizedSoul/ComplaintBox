@@ -44,10 +44,10 @@
 								</div>
 							</a>
 						</div>
-						{% for complain,image in combined %}
+						{% for complain in complain %}
 					
 						<div class="col-md-4 ftco-animate">
-								<a href="/demo/single/{{complain.id}}" class="photography-entry img img-2 d-flex justify-content-start align-items-end" style="background-image: url({{image}});">
+								<a href="/demo/single/{{complain.id}}" class="photography-entry img img-2 d-flex justify-content-start align-items-end" style="background-image: url({{complain.complain_image}});">
 									<div class="overlay"></div>
 									<div class="text ml-4 mb-4">
 										<h3>Complain of {{time}}</h3>
