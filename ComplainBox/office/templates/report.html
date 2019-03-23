@@ -1,0 +1,118 @@
+{% extends 'base1.html' %}
+{% block body %}
+<style>
+		#complain {
+		  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+		  border-collapse: collapse;
+		  width: 100%;
+		}
+		
+		#complain td, #customers th {
+		  border: 1px solid #ddd;
+		  padding: 8px;
+		}
+		
+		#complain tr:nth-child(even){background-color: #f2f2f2;}
+		
+		#complain tr:hover {background-color: #ddd;}
+		
+		#complain th {
+		  padding-top: 12px;
+		  padding-bottom: 12px;
+		  text-align: left;
+		  background-color: #4CAF50;
+		  color: white;
+		}
+		</style>
+
+<section class="ftco-section ftco-bread">
+	<div class="container">
+		<div class="row no-gutters slider-text justify-content-center align-items-center">
+			<div class="col-md-8 ftco-animate">
+				<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span></span></p>
+				<h1 class="bread">Report</h1>
+			</div>
+		</div>
+	</div>
+</section>
+<h2>Generate report by:</h2>
+<section class="ftco-section">
+	<div class="container">
+		<div class="row d-flex">
+			
+			<br>
+				<form action="/office/report/" method="POST" >{% csrf_token %}
+					Start date: 
+					<input type="date" name="start">
+					<br>
+					End Date:			
+					<input type="date" name="end">
+					
+					<br>
+					Department  
+					<select name="category">
+						<option value="water">Water</option>
+						<option value="drainage">Drainage</option>
+						<option value="tree">Tree</option>
+						<option value="garbage">Garbage</option>
+						<option value="other">Other</option>
+					</select>
+					<input type="hidden" name="id" value={{comp.id}}>
+					
+				<br>
+			
+				 Status  
+					<select name="status">
+							<option value="pending">Pending</option>
+						<option value="solved">Solved</option>
+						<option value="transferred">Transferred</option>
+						<option value="rejected">Rejected</option>
+						<option value="clubbed">Clubbed</option>
+						
+					</select>
+			
+
+				<br>
+				
+					 Priority: 	
+					<select name="priority">
+						<option value="1">High</option>
+						<option value="2">Medium</option>
+						<option value="3">Low</option>
+					</select>
+			
+  <br>
+				
+					 Ratings 	
+					<select name="ratings">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+					<input type="submit" value="Generate report">
+				</form>
+
+
+		</div>
+	</div>
+</section>
+
+<table id="complain" border="10">
+	<th>Start date</th>
+	<th>End date</th>
+	<th>Department</th>
+	<th>Status</th>
+	<th>Ratings</th>
+	<th>Priority</th>
+	<th>Total Complains</th>
+	<tr>
+	{%for item in list %}		
+		<td><b>{{item}}</b></td>
+	{%endfor%}
+	<td><h5><b>{{report}}</b></h5></td>
+	</tr>
+</table>
+
+{% endblock %} 

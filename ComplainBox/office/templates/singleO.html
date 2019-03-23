@@ -10,7 +10,7 @@
 	        </div>
 				</div>
 			</section>
-		
+
 			<section class="ftco-section">
 	    	<div class="container">
 	    		<div class="row">
@@ -25,7 +25,7 @@
 	            <p>
 	              <img src="{{comp.complain_image}}" alt="" class="img-fluid">
 							</p>
-							<span><h3>Process is in  {{comp.complain_status}} status </h3></span>	
+							<span><h3>Process is in  {{comp.complain_status}} status </h3></span>
 							<span><h3>Process is being handled by {{comp.complain_category}} department </h3></span>
 							<p>{{comp.complain_description}}</p>
 							{% if comp.post_to_wall == 0 %}
@@ -37,7 +37,7 @@
 								<input type="submit" value="Remove From Wall">
 							</form>
 							{% endif %}
-							
+							<br>
 							<form action="/office/redirect/" method="POST" >{% csrf_token %}
 								redirect to different department:
 								<select name="category">
@@ -49,6 +49,45 @@
 								</select>
 								<input type="hidden" name="id" value={{comp.id}}>
 								<input type="submit" value="redirect">
+							</form>
+							<br>
+							<form action="/office/status/" method="POST" >{% csrf_token %}
+								Change status of complain:
+								<select name="status">
+									<option value="solved">Solved</option>
+									<option value="transferred">Transferred</option>
+									<option value="rejected">Rejected</option>
+									<option value="clubbed">Clubbed</option>
+
+								</select>
+								<input type="hidden" name="id" value={{comp.id}}>&nbsp;
+								<input type="submit" value="Change">
+							</form>
+
+							<br>
+							<form action="/office/priority/" method="POST" >{% csrf_token %}
+								Decide priority:
+								<select name="priority">
+									<option value="1">High</option>
+									<option value="2">Medium</option>
+									<option value="3">Low</option>
+								</select>
+								<input type="hidden" name="id" value={{comp.id}}>&nbsp;
+								<input type="submit" value="Decide">
+							</form>
+              <br>
+
+							<form action="/office/ratings/" method="POST" >{% csrf_token %}
+								Give ratings to complain based on usefulness:
+								<select name="ratings">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+								<input type="hidden" name="id" value={{comp.id}}>&nbsp;
+								<input type="submit" value="Rate">
 							</form>
 
 	            <div class="pt-5 mt-5">
@@ -93,14 +132,14 @@
 	                  </ul>
 	                </li>
 
-	        
+
 	              </ul>
 	              <!-- END comment-list -->
-	              
+
 	              <div class="comment-form-wrap pt-5">
 	                <h3 class="mb-5">Leave a comment</h3>
 	                <form action="/demo/addFeedback/{{comp.id}}/" method="POST" class="p-3 p-md-5 bg-light">{% csrf_token %}
-	            
+
 	                  <div class="form-group">
 	                    <label for="message">Message</label>
 	                    <textarea name="feedback" id="message" cols="30" rows="10" class="form-control"></textarea>
@@ -151,5 +190,5 @@
 	    		</div>
 	    	</div>
 	    </section>
-	
-{% endblock %} 
+
+{% endblock %}

@@ -1,0 +1,91 @@
+
+ {% extends 'base.html' %}
+ {% block body %}
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script>
+	$(document).ready(function(){
+	  $("#detail").blur(function(){
+	var det = document.getElementById("detail").value;
+	const CLIENT_TOKEN="GVULD55QMRASSPSJD6D2FELJY4AHFXWG";
+	const q = encodeURIComponent(det);
+	const uri = 'https://api.wit.ai/message?q=' + q;
+	const auth = 'Bearer ' + CLIENT_TOKEN;
+		fetch(uri, {headers: {Authorization: auth}})
+  			.then(res => res.json())
+  			.then(function(res) {
+				var dept=res['entities']['intent'][0]['value'];
+			console.log(dept);
+			$("#msg").show();
+			document.getElementById("p1").innerHTML = dept;
+
+		    });
+		
+	  });
+	});
+    
+   $(document).ready(function(){
+	$("#msg").hide();
+});
+</script>
+<div class="d-flex">
+	<div class=" text img p-md-5">
+		<form method="post" action="/demo/addComplain/" enctype="multipart/form-data">{% csrf_token %}
+		Select the category*
+		<select name="category">
+			<option value="water">Water</option>
+			<option value="drainage">Drainage</option>
+			<option value="tree">Tree</option>
+			<option value="garbage">Garbage</option>
+			<option value="other">Other</option>
+		</select><br><br>
+		Select the image file
+		<input type="file" name="image"/><br/><br/>
+		Enter the details here*
+		<input type="textarea" id="detail"name="details"/><br/><br/>
+		<h6 id="msg">We detected that department is:&nbsp;<h6 id="p1"> </h6></h6>
+		
+		Location
+		<input type="text" id="location" name="location"><br><br>
+		Is this complain or Suggestion:<br>
+		<input type="radio" name="comps" value="complain">Complain
+		<input type="radio" name="comps" value="suggestion">Suggestion <br><br>
+		
+		<input type="submit" id="reg" >
+	</form>
+	   {% for rel in suggestions %}
+	   	   <form action="/demo/increase/" method="post">{% csrf_token %}
+			<input type="hidden" name="id" id="id" value={{rel.id}}>{{rel.id}}
+				<p id="de">{{rel.complain_description}}</p> 
+				<p id="cat"> {{rel.complain_category}}</p>
+				<p id="city">{{rel.complain_address}}</p>
+				<input type="submit" value="+">
+			
+		</form>
+	    <br>
+	   {% endfor %}
+	
+	
+	
+	</div>
+	<div class="author-info text p-4 p-md-5 mt-5 mb-5">
+		<div class="desc">
+			<h1 class="mb-4"><span>Top Helpers of the WEEK! </span></h1>
+			<p class="mb-4">
+				<ul>
+					<li>1)N.M.KUMAR</li>
+					<li>2)P.N.SHETH</li>
+					<li>3)R.K.PATEL</li>
+				</ul>
+			</p>
+			<h3 class="signature h1">FOLLOW OUR CITY PAGE ON:</h3>
+			<ul class="ftco-social mt-3">
+				<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+				<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+				<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+                  
