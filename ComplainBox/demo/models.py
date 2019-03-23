@@ -11,7 +11,7 @@ class Citizen(models.Model):
     level=models.CharField(max_length=20,default='beginner')
 
 class Complain(models.Model):
- complain_id=models.IntegerField(default=1)    
+ complain_id=models.IntegerField(default=1)
  complain_description=models.CharField(max_length=200)
  complain_address=models.CharField(max_length=100)
  complain_category=models.CharField(max_length=20)

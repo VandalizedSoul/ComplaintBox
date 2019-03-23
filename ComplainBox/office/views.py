@@ -11,7 +11,7 @@ import re
 from wit import Wit
 from demo.models import Complain, Citizen, Feedback, Notification
 from django.core.files.storage import FileSystemStorage
-from .filters import ComplainFilter     
+from .filters import ComplainFilter
 
 access_token = "GVULD55QMRASSPSJD6D2FELJY4AHFXWG"
 client = Wit(access_token)
@@ -152,4 +152,3 @@ def addPost(request):
  c=Complain(complain_type=ctype,complain_image=fnm,post_to_wall=1,complain_description=cdetail,complain_address=cadd,complain_category=ccatego)
  c.save()
  return HttpResponseRedirect('/office/complains')
-

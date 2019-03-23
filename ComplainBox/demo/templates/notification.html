@@ -14,20 +14,20 @@
 <section class="ftco-section">
 	<div class="container">
 		<div class="row d-flex">
-			
-		
+
+
 			{% for notification in notifications %}
 			<form action="/demo/seen/{{notification.id}}/" method="POST"> {% csrf_token %}
 				{% if notification.seen %}
 			<input type="submit" class="mt-2 btn btn-red submit" style="width:725px" value={{notification.description}} />
-		
+
 		{% else %}
 		<input type="submit" class="mt-2 btn btn-black submit" style="width:725px;background-color:cornflowerblue" value={{notification.description}} />
 	{%endif%}
 		</form>
 			{% endfor %}
             
-            
+
             <div class="col-lg-4 sidebar ftco-animate bg-light">
 				<div class="sidebar-box">
 					<form action="#" class="search-form">
@@ -48,7 +48,7 @@
 					</ul>
 				</div>
 
-			 
+
 
 				<div class="sidebar-box subs-wrap img" style="background-image: url(/static/demo/images/bg_1.jpg);">
 					<div class="overlay"></div>
@@ -80,4 +80,4 @@
 	</div>
 </section>
 
-{% endblock %} 
+{% endblock %}

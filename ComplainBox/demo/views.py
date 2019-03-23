@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.template.context_processors import csrf
-import datetime 
+import datetime
 import string
 import re,requests
 from wit import Wit
@@ -21,7 +21,7 @@ def printf(request):
 	c = {}
 	c.update(csrf(request))
 	return render_to_response('printf.html', c)
-	
+
 def about(request):
 	c = {}
 	c.update(csrf(request))
@@ -61,7 +61,7 @@ def addComplain(request):
  if related != None :
   return render_to_response('newcomplain.html',{'suggestions':related})
  c=Complain(complain_type=ctype,complain_image=fnm,post_to_wall=1,complain_description=cdetail,complain_address=cadd,complain_category=ccatego)
- c.save()	
+ c.save()
  return HttpResponseRedirect('/demo/complain')
 
 @csrf_exempt
@@ -132,7 +132,7 @@ def rewards(request):
 	rank=''
 	reward=[]
 	for user in users:
-		rank=user.level 
+		rank=user.level
 	if rank=='soldier':
 		reward.append(rewards[0])
 	elif rank=='commander':
@@ -151,6 +151,15 @@ def rewards(request):
 	return render_to_response('rewards.html',{'rewards':reward}, c)
 
 @csrf_exempt
+def single(request,comp_id='1'):
+	c = {}
+	c.update(csrf(request))
+	uname='ravi'
+	complain=Complain.objects.filter(id=comp_id)
+	comments=Feedback.objects.filter(feed_complain_id=comp_id,feed_username=uname)
+	return render_to_response('single.html',{'complain':complain,'comments':comments}, c)
+
+
 def single(request,comp_id='1'):
 	c = {}
 	c.update(csrf(request))
