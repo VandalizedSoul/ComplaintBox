@@ -34,24 +34,21 @@
 		<form method="post" action="/office/addPost/" enctype="multipart/form-data">{% csrf_token %}
 			<h1>What is in your mind for beloved citizens</h1>
 			Select the category*
-		<select name="category">
-			<option value="water">Water</option>
-			<option value="drainage">Drainage</option>
-			<option value="tree">Tree</option>
-			<option value="garbage">Garbage</option>
-			<option value="general">General</option>
-			<option value="other">Other</option>
+		<select name="category" class="form-control">
+				{% for category in categories %}
+				<option value="{{category.category}}">{{category.category}}</option>
+				{% endfor %}
 		</select><br><br>
 		Select the image file
-		<input type="file" name="image"/><br/><br/>
+		<input type="file" class="form-data" name="image"/><br/><br/>
 		Enter the details here*
-		<input type="textarea" id="detail"name="details"/><br/><br/>
+		<input type="textarea" class="form-control" id="detail" required name="details"/><br/><br/>
 		<h6 id="msg">We detected that department is:&nbsp;<h6 id="p1"> </h6></h6>
 		
-		Location
-		<input type="text" id="location" name="location"><br><br>
+		Location*
+		<input type="text" class="form-control" id="location" name="location" required><br><br>
 		
-		<input type="submit" >
+		<input type="submit" class="mt-2 btn btn-black submit">
 	   </form>
 	</div>
 	<div class="author-info text p-4 p-md-5 mt-5 mb-5">
