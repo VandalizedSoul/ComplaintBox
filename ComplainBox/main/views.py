@@ -108,7 +108,8 @@ def deleteReward(request):
 @user_passes_test(is_admin)
 def users(request):
     category=Category.objects.all()
-    return render(request,'users.html',{'categories':category},c)
+    return render(request,'users.html',{'categories':category})
+
 
 @login_required
 @user_passes_test(is_admin)

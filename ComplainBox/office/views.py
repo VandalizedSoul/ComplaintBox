@@ -118,14 +118,14 @@ def newPost(request):
     #
     #
     category=Category.objects.all()
-    return render(request,'newPost.html',{'categories':category}, c)
+    return render(request,'newPost.html',{'categories':category})
 
 @login_required
 @user_passes_test(is_officer)
 def generate(request):
  #
  #
- return render(request,'report.html', c)
+ return render(request,'report.html')
 
 @login_required
 @user_passes_test(is_officer)
@@ -152,7 +152,7 @@ def report(request):
  print(start)
  list1=[start,end,category,status,ratings,priority]
  report=Complain.objects.filter(date_time__range=[start,end],complain_category=category,complain_status=status,complain_rating=ratings,complain_priority=priority).count()
- return render(request,'report.html',{'report':report,'list':list1}, c)
+ return render(request,'report.html',{'report':report,'list':list1})
 
 @login_required
 @user_passes_test(is_officer)
