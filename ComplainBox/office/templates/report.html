@@ -9,7 +9,8 @@
 		
 		#complain td, #customers th {
 		  border: 1px solid #ddd;
-		  padding: 8px;
+		  padding: 15px;
+		  text-align: center;
 		}
 		
 		#complain tr:nth-child(even){background-color: #f2f2f2;}
@@ -19,7 +20,7 @@
 		#complain th {
 		  padding-top: 12px;
 		  padding-bottom: 12px;
-		  text-align: left;
+		  text-align: center;
 		  background-color: #4CAF50;
 		  color: white;
 		}
@@ -35,71 +36,71 @@
 		</div>
 	</div>
 </section>
-<h2>Generate report by:</h2>
+<h3>Generate report by:</h3>
 <section class="ftco-section">
 	<div class="container">
 		<div class="row d-flex">
 			
-			<br>
+			    
 				<form action="/office/report/" method="POST" >{% csrf_token %}
-					Start date: 
-					<input type="date" name="start">
-					<br>
-					End Date:			
-					<input type="date" name="end">
-					
-					<br>
-					Department  
-					<select name="category">
-						<option value="water">Water</option>
-						<option value="drainage">Drainage</option>
-						<option value="tree">Tree</option>
-						<option value="garbage">Garbage</option>
-						<option value="other">Other</option>
-					</select>
-					<input type="hidden" name="id" value={{comp.id}}>
-					
-				<br>
-			
-				 Status  
-					<select name="status">
-							<option value="pending">Pending</option>
-						<option value="solved">Solved</option>
-						<option value="transferred">Transferred</option>
-						<option value="rejected">Rejected</option>
-						<option value="clubbed">Clubbed</option>
-						
-					</select>
-			
-
-				<br>
-				
-					 Priority: 	
-					<select name="priority">
-						<option value="1">High</option>
-						<option value="2">Medium</option>
-						<option value="3">Low</option>
-					</select>
-			
-  <br>
-				
-					 Ratings 	
-					<select name="ratings">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-					</select>
-					<input type="submit" value="Generate report">
+					<div class="col-md-15" >
+							  Start date: 
+							  <input type="date" class="form-control" name="start" required>
+								
+					</div>
+					<div class="col-md-15" >
+							End Date:			
+							<input type="date" class="form-control" name="end" required>
+					</div>
+					<div class="col-md-15" >
+							Department  
+							<select name="category" class="form-control">
+								<option value="water">Water</option>
+								<option value="drainage">Drainage</option>
+								<option value="tree">Tree</option>
+								<option value="garbage">Garbage</option>
+								<option value="other">Other</option>
+							</select>
+							<input type="hidden" name="id" value={{comp.id}}>
+					</div>
+					<div class="col-md-15" >
+							Status  
+							<select name="status" class="form-control">
+									<option value="pending">Pending</option>
+								<option value="solved">Solved</option>
+								<option value="transferred">Transferred</option>
+								<option value="rejected">Rejected</option>
+								<option value="clubbed">Clubbed</option>
+								
+							</select>
+					</div>
+					<div class="col-md-15" >
+							Priority: 	
+							<select name="priority" class="form-control">
+								<option value="1">High</option>
+								<option value="2">Medium</option>
+								<option value="3">Low</option>
+							</select>
+					</div>
+					<div class="col-md-15" >
+							Ratings 	
+							<select name="ratings" class="form-control">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+					</div>
+				<input type="submit" class="mt-2 btn btn-black submit" value="Generate report">
 				</form>
 
 
 		</div>
 	</div>
 </section>
-
-<table id="complain" border="10">
+<div class="table-responsive">
+<table  class="table"  >
 	<th>Start date</th>
 	<th>End date</th>
 	<th>Department</th>
@@ -107,12 +108,12 @@
 	<th>Ratings</th>
 	<th>Priority</th>
 	<th>Total Complains</th>
-	<tr>
+	<tr style="background-color:bisque">
 	{%for item in list %}		
 		<td><b>{{item}}</b></td>
 	{%endfor%}
 	<td><h5><b>{{report}}</b></h5></td>
 	</tr>
 </table>
-
+</div>	
 {% endblock %} 

@@ -1,0 +1,67 @@
+
+ {% extends 'base3.html' %}
+ {% block body %}
+ <script>
+    function myFunction() {
+      alert("Officer added");
+    }
+    function myFunction1() {
+      alert("Officer Removed");
+    }
+		function myFunction2() {
+      alert("Officer details Updated");
+    }
+    </script>
+<div class="d-flex">
+	<div class="container">
+	<div  class=" text img p-md-6">
+	 <form method="post" action="/main/addOfficer/" enctype="multipart/form-data">{% csrf_token %}
+		<h2>Create new Officer</h2>
+		<input  class="form-control" placeholder="Officer Name"  type="text" name="name">
+		<br>
+        <input  class="form-control" placeholder="Contact number" type="text" name="contact">
+        <br>
+        <input  class="form-control" placeholder="Officer details"  type="text" name="detail">
+        <br>
+        <input  class="form-control" placeholder="Select username"  type="text" name="username">
+        <br>
+        <input  class="form-control" placeholder="Select password"  type="text" name="password">
+		<br>
+		<select name="department" class="form-control">
+			{% for category in categories %}
+				<option value="{{category.category}}">{{category.category}}</option>
+			{% endfor %}	
+			</select>
+		<input type="submit" style="width: 100px;" class="mt-2 btn btn-black submit" onclick="myFunction()" value="Add">
+	 </form>
+	</div>
+
+	<div class="author-info text p-4 p-md-6">
+			<div class="desc">
+				<h1 class="mb-6"><span>All Officers</span></h1>
+				<div class="row">
+				{%for reward in rewards %}
+	          <div class="col-md-6 d-flex align-self-stretch ftco-animate">
+	            <div class="media block-6 services py-4 d-block">
+	              <div class="d-flex justify-content-start">
+	              
+	              </div>
+	              <div class="media-body p-2 mt-2">
+										<form method="post" action="/main/deleteReward/" enctype="multipart/form-data">{% csrf_token %}
+	                <h3 class="heading mb-3">{{reward.name}}</h3>
+									<p>{{reward.description}}	</p>
+									<input type="hidden" name="reward" value="{{reward.id}}" />
+                    <input type="submit"  class="mt-2 btn btn-black submit" onclick="myFunction1()"  value="Remove">
+                    </form>
+	              </div>
+	            </div>      
+	          </div>
+			  {%endfor%}
+			</div>
+			</div>
+		</div>
+</div>	
+</div>
+
+{% endblock %}
+                  

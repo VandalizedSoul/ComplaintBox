@@ -1,0 +1,63 @@
+
+ {% extends 'base3.html' %}
+ {% block body %}
+ <script>
+    function myFunction() {
+      alert("Reward added");
+    }
+    function myFunction1() {
+      alert("Reward Removed");
+    }
+		function myFunction2() {
+      alert("Reward details Updated");
+    }
+    </script>
+<div class="d-flex">
+	<div class="container">
+	<div  class=" text img p-md-6">
+	 <form method="post" action="/main/addReward/" enctype="multipart/form-data">{% csrf_token %}
+		<h2>Enter new Reward</h2>
+		<input  class="form-control" placeholder="Reward Name"  type="text" name="rewardname">
+		<br>
+		<input  class="form-control" placeholder="Reward Description"  type="text" name="rewarddesc">
+		<br>
+		<select name="level" class="form-control">
+			
+				<option value="soldier">Soldier</option>
+				<option value="commander">Commander</option>
+				<option value="brigadier">Brigadier</option>
+				<option value="lieutenant">Lieutenant</option>
+			</select>
+		<input type="submit" style="width: 100px;" class="mt-2 btn btn-black submit" onclick="myFunction()" value="Add">
+	 </form>
+	</div>
+
+	<div class="author-info text p-4 p-md-6">
+			<div class="desc">
+				<h1 class="mb-6"><span>Available Rewards</span></h1>
+				<div class="row">
+				{%for reward in rewards %}
+	          <div class="col-md-6 d-flex align-self-stretch ftco-animate">
+	            <div class="media block-6 services py-4 d-block">
+	              <div class="d-flex justify-content-start">
+	              
+	              </div>
+	              <div class="media-body p-2 mt-2">
+										<form method="post" action="/main/deleteReward/" enctype="multipart/form-data">{% csrf_token %}
+	                <h3 class="heading mb-3">{{reward.name}}</h3>
+									<p>{{reward.description}}	</p>
+									<input type="hidden" name="reward" value="{{reward.id}}" />
+                    <input type="submit"  class="mt-2 btn btn-black submit" onclick="myFunction1()"  value="Remove">
+                    </form>
+	              </div>
+	            </div>      
+	          </div>
+			  {%endfor%}
+			</div>
+			</div>
+		</div>
+</div>	
+</div>
+
+{% endblock %}
+                  
