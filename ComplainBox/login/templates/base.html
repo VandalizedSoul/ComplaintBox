@@ -27,25 +27,22 @@
     <link rel="stylesheet" href="/static/demo/css/flaticon.css">
     <link rel="stylesheet" href="/static/demo/css/icomoon.css">
     <link rel="stylesheet" href="/static/demo/css/style.css">
-	</head>
-	
+  </head>
   <body>
-		{% load custom_tags %}
+
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<h1 id="colorlib-logo"><a href="/demo/home"><span class="img" style="background-image: url('{% url user %}')"></span>{{ user }}</a></h1>
+			<h1 id="colorlib-logo"><a href="index.html"><span class="img" style="background-image: url(/static/demo/images/author.JPG);"></span>Ravi Vaghasiya</a></h1>
 			<nav id="colorlib-main-menu" role="navigation">
-		
 				<ul>
 					<li><a href="/demo/home">Home</a></li>
 					<li><a href="/demo/complain">My Complains</a></li>
 					<li><a href="/demo/new">New complain</a></li>
 					<li><a href="/demo/rewards">Rewards</a></li>
 					<li><a href="/demo/wall">Wall</a></li>
-					<li><a href="/demo/notification">Notification<span class="badge" id="badge">{% unread user %} </span></a></li>
-					<li><a href="/login/logout">Logout</a></li>
-					
+					<li><a href="/demo/notification">Notification</a></li>
+					<li><a href="/demo/contact">Contact Us</a></li>
 
 				</ul>
 			</nav>
@@ -82,18 +79,7 @@
 			          <div class="col-xl-3 col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 			            <div class="block-18">
 			              <div class="text d-flex align-items-center">
-
-			                <strong class="number" data-number=>0</strong>			                <span>Total Users</span>
-			              </div>
-			            </div>
-			          </div>
-			          <div class="col-xl-3 col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
-			            <div class="block-18">
-			              <div class="text d-flex align-items-center">
-
-			                <strong class="number" data-number=>0</strong>
-
-
+			                <strong class="number" data-number="120">0</strong>
 			                <span>Total Complains</span>
 			              </div>
 			            </div>
@@ -101,9 +87,7 @@
 			          <div class="col-xl-3 col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 			            <div class="block-18">
 			              <div class="text d-flex align-items-center">
-
-			                <strong class="number" data-number=>0</strong>
-
+			                <strong class="number" data-number="100">0</strong>
 			                <span>Solved</span>
 			              </div>
 			            </div>
@@ -111,9 +95,16 @@
 			          <div class="col-xl-3 col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 			            <div class="block-18">
 			              <div class="text d-flex align-items-center">
-			                <strong class="number" data-number=>0</strong>
-
+			                <strong class="number" data-number="10">0</strong>
 			                <span>Pending</span>
+			              </div>
+			            </div>
+			          </div>
+			          <div class="col-xl-3 col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
+			            <div class="block-18">
+			              <div class="text d-flex align-items-center">
+			                <strong class="number" data-number="10">0</strong>
+			                <span>Rejected</span>
 			              </div>
 			            </div>
 			          </div>

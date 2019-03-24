@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block body %}
+			<section class="ftco-section ftco-bread">
+				<div class="container">
+					<div class="row no-gutters slider-text justify-content-center align-items-center">
+	          <div class="col-md-8 ftco-animate">
+	            <p class="breadcrumbs"><span class="mr-2"><a href="index.html"></a></span> <span class="mr-2"><a href="blog.html">Blog</a></span> </p>
+	            <h1 class="bread">Blog Single</h1>
+	          </div>
+	        </div>
+				</div>
+			</section>
+			
+			<section class="ftco-section">
+	    	<div class="container">
+	    		<div class="row">
+							{% for comp in complain %}
+	    			<div class="col-lg-8 ftco-animate">
+	            <h2 class="mb-3 font-weight-bold">The Problem</h2>
+	            <p class="meta">
+								<span>On {{comp.date_time}}</span>&nbsp;
+								<span>At {{comp.complain_address}}</span><br>
+								<span>Other {{comp.complain_count}} had this problem</span>
+							 	&nbsp; Rated:   {{comp.complain_rating}}/5
+							</p>
+	            <p>
+	              <img src="{{comp.complain_image}}" alt="" class="img-fluid">
+	            </p>
+							<span><h3>Process is in  {{comp.complain_status}} status </h3></span>	
+							<span><h3>Process is being handled by {{comp.complain_category}} department </h3></span>	
+							<p>{{comp.complain_description}}</p>
+	   
+
+	            <div class="pt-5 mt-5">
+	              <h3 class="mb-5 font-weight-bold">3 Comments</h3>
+	              <ul class="comment-list">
+									{% for comment in comments %}
+									<li class="comment">
+	                  <div class="vcard bio">
+	                    <img src="/static/demo/images/person_1.jpg" alt="Image placeholder">
+	                  </div>
+	                  <div class="comment-body">
+	                    <h3>{{comment.feed_username}}</h3>
+	                    <div class="meta">{{feed_date_time}}</div>
+	                    <p>{{comment.feed_feedback}}</p>
+	                    <p><a href="#" class="reply">Reply</a></p>
+	                  </div>
+	                </li>
+									{% endfor %}
+	                <li class="comment">
+	                  <div class="vcard bio">
+	                    <img src="/static/demo/images/person_1.jpg" alt="Image placeholder">
+	                  </div>
+	                  <div class="comment-body">
+	                    <h3>John Doe</h3>
+	                    <div class="meta">October 03, 2018 at 2:21pm</div>
+	                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+	                    <p><a href="#" class="reply">Reply</a></p>
+	                  </div>
+
+	                  <ul class="children">
+	                    <li class="comment">
+	                      <div class="vcard bio">
+	                        <img src="/static/demo/images/person_1.jpg" alt="Image placeholder">
+	                      </div>
+	                      <div class="comment-body">
+	                        <h3>John Doe</h3>
+	                        <div class="meta">October 03, 2018 at 2:21pm</div>
+	                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+	                        <p><a href="#" class="reply">Reply</a></p>
+	                      </div>
+										  </li>
+	                  </ul>
+	                </li>
+
+	        
+	              </ul>
+	              <!-- END comment-list -->
+	              
+	              <div class="comment-form-wrap pt-5">
+	                <h3 class="mb-5">Leave a comment</h3>
+	                <form action="/demo/addFeedback/{{comp.id}}/" method="POST" class="p-3 p-md-5 bg-light">{% csrf_token %}
+	            
+	                  <div class="form-group">
+	                    <label for="message">Message</label>
+	                    <textarea name="feedback" id="message" cols="30" rows="10" class="form-control"></textarea>
+	                  </div>
+	                  <div class="form-group">
+	                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+	                  </div>
+
+	                </form>
+	              </div>
+	            </div>
+						</div> <!-- .col-md-8 -->
+						{% endfor %}
+	    			<div class="col-lg-4 sidebar ftco-animate bg-light">
+	            <div class="sidebar-box">
+	              <form action="#" class="search-form">
+	                <div class="form-group">
+	                  <span class="icon icon-search"></span>
+	                  <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+	                </div>
+	              </form>
+	            </div>
+	            <div class="sidebar-box ftco-animate">
+	            	<h3 class="sidebar-heading">Categories</h3>
+	              <ul class="categories">
+	                <li><a href="#">Fashion <span>(6)</span></a></li>
+	                <li><a href="#">Technology <span>(8)</span></a></li>
+	                <li><a href="#">Travel <span>(2)</span></a></li>
+	                <li><a href="#">Food <span>(2)</span></a></li>
+	                <li><a href="#">Photography <span>(7)</span></a></li>
+	              </ul>
+	            </div>
+
+
+							<div class="sidebar-box subs-wrap img" style="background-image: url(images/bg_1.jpg);">
+								<div class="overlay"></div>
+								<h3 class="mb-4 sidebar-heading">Newsletter</h3>
+								<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia</p>
+	              <form action="#" class="subscribe-form">
+	                <div class="form-group">
+	                  <input type="text" class="form-control" placeholder="Email Address">
+	                  <input type="submit" value="Subscribe" class="mt-2 btn btn-white submit">
+	                </div>
+	              </form>
+	            </div>
+
+	          </div><!-- END COL -->
+	    		</div>
+	    	</div>
+	    </section>
+	
+{% endblock %} 

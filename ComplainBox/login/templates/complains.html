@@ -1,0 +1,64 @@
+
+{% extends 'base.html' %}
+{% block body %}
+<section class="ftco-section ftco-bread">
+		<div class="container">
+			<div class="row no-gutters slider-text justify-content-center align-items-center">
+				<div class="col-md-8 ftco-animate">
+					<p class="breadcrumbs"><span class="mr-2"><a href="/demo/home">Home</a></span> <span></span></p>
+					<h1 class="bread">Complains</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+
+			<section class="ftco-section-3">
+				<div class="photograhy">
+					<div class="row">
+					
+						<div class="col-md-4 ftco-animate">
+							<a href="/static/demo/images/problem1.jpeg" class="photography-entry img image-popup d-flex justify-content-start align-items-end" style="background-image: url(/static/demo/images/problem1.jpeg);">
+								<div class="overlay"></div>
+								<div class="text ml-4 mb-4">
+									<h3>Complain 01</h3>
+									<span class="tag">Garbage</span>
+								</div>
+							</a>
+						</div>
+						
+						<div class="col-md-4 ftco-animate">
+							<a href="/static/demo/images/problem2.jpeg" class="photography-entry img image-popup d-flex justify-content-start align-items-end" style="background-image: url(/static/demo/images/problem2.jpeg);">
+								<div class="overlay"></div>
+								<div class="text ml-4 mb-4">
+									<h3>Complain 02</h3>
+									<span class="tag">Drainage</span>
+								</div>
+							</a>
+						</div>
+						<div class="col-md-4 ftco-animate">
+							<a href="/static/demo/images/problem3.jpeg" class="photography-entry img image-popup d-flex justify-content-start align-items-end" style="background-image: url(/static/demo/images/problem3.jpeg);">
+								<div class="overlay"></div>
+								<div class="text ml-4 mb-4">
+									<h3>Complain 03</h3>
+									<span class="tag">Water Wastage</span>
+								</div>
+							</a>
+						</div>
+						{% for complain in complain %}
+					
+						<div class="col-md-4 ftco-animate">
+								<a href="/demo/single/{{complain.id}}" class="photography-entry img img-2 d-flex justify-content-start align-items-end" style="background-image: url({{complain.complain_image}});">
+									<div class="overlay"></div>
+									<div class="text ml-4 mb-4">
+										<h3>Complain of {{time}}</h3>
+										<span class="tag">{{complain.complain_category}}</span>
+									</div>
+								</a>
+							</div>
+						{% endfor %}
+					
+					
+					</div>
+				</div>
+			</section>
+			{% endblock %}

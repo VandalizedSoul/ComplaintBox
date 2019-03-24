@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>E-P</title>
+    <title>Louie - Free Bootstrap 4 Template by Colorlib</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -27,26 +27,21 @@
     <link rel="stylesheet" href="/static/demo/css/flaticon.css">
     <link rel="stylesheet" href="/static/demo/css/icomoon.css">
     <link rel="stylesheet" href="/static/demo/css/style.css">
-	</head>
-	
+  </head>
   <body>
-		{% load custom_tags %}
+
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<h1 id="colorlib-logo"><a href="/demo/home"><span class="img" style="background-image: url('{% url user %}')"></span>{{ user }}</a></h1>
+			<h1 id="colorlib-logo"><a href="index.html"><span class="img" style="background-image: url(/static/demo/images/author.jpg);"></span>Louie Smith</a></h1>
 			<nav id="colorlib-main-menu" role="navigation">
-		
 				<ul>
-					<li><a href="/demo/home">Home</a></li>
-					<li><a href="/demo/complain">My Complains</a></li>
-					<li><a href="/demo/new">New complain</a></li>
-					<li><a href="/demo/rewards">Rewards</a></li>
-					<li><a href="/demo/wall">Wall</a></li>
-					<li><a href="/demo/notification">Notification<span class="badge" id="badge">{% unread user %} </span></a></li>
-					<li><a href="/login/logout">Logout</a></li>
-					
-
+					<li><a href="index.html">Home</a></li>
+					<li><a href="collection.html">Feed</a></li>
+					<li class="colorlib-active"><a href="about.html">New complain</a></li>
+					<li><a href="services.html">My Services</a></li>
+					<li><a href="blog.html">Blog</a></li>
+					<li><a href="contact.html">Contact</a></li>
 				</ul>
 			</nav>
 
@@ -62,18 +57,49 @@
 				</div>
 			</div>
 		</aside> <!-- END COLORLIB-ASIDE -->
-	
 		<div id="colorlib-main">
-		
-			
-				
-					
-					{% block body %}
-					{% endblock %}
-
-			
-	
-
+			<section class="ftco-section-no-padding bg-light">
+				<div class="hero-wrap">
+					<div class="overlay"></div>
+					<div class="d-flex">
+						<div class="author-image text img p-md-5">
+							Select the category*
+							<select>
+								<option>Water</option>
+								<option>Drainage</option>
+								<option>Tree</option>
+								<option>Garbage</option>
+							</select><br>
+							Enter the details here*
+							<input type="textarea" name="complain"/><br>
+							Location
+							<input type="text"><br>
+							Is this complain or Suggestion:<br>
+							<input type="radio" name="comp">Complain
+							<input type="radio" name="comp">Suggestion <br>
+							<input type="submit" >
+						</div>
+						<div class="author-info text p-4 p-md-5 mt-5 mb-5">
+							<div class="desc">
+							  <h1 class="mb-4"><span>Top Helpers of the WEEK! </span></h1>
+								<p class="mb-4">
+									<ul>
+										<li>1)N.M.KUMAR</li>
+										<li>2)P.N.SHETH</li>
+										<li>3)R.K.PATEL</li>
+									</ul>
+								</p>
+								<h3 class="signature h1">FOLLOW OUR CITY PAGE ON:</h3>
+								<ul class="ftco-social mt-3">
+		              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+		              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+		              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+		            </ul>
+	            </div>
+						</div>
+					</div>
+				</div>
+			</section>
 			<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(/static/demo/images/bg_1.jpg);">
 	    	<div class="container">
 	    		<div class="row justify-content-start">
@@ -82,38 +108,32 @@
 			          <div class="col-xl-3 col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 			            <div class="block-18">
 			              <div class="text d-flex align-items-center">
-
-			                <strong class="number" data-number=>0</strong>			                <span>Total Users</span>
+			                <strong class="number" data-number="120">0</strong>
+			                <span>Pounds of Equipment</span>
 			              </div>
 			            </div>
 			          </div>
 			          <div class="col-xl-3 col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 			            <div class="block-18">
 			              <div class="text d-flex align-items-center">
-
-			                <strong class="number" data-number=>0</strong>
-
-
-			                <span>Total Complains</span>
+			                <strong class="number" data-number="150">0</strong>
+			                <span>Studio Session</span>
 			              </div>
 			            </div>
 			          </div>
 			          <div class="col-xl-3 col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 			            <div class="block-18">
 			              <div class="text d-flex align-items-center">
-
-			                <strong class="number" data-number=>0</strong>
-
-			                <span>Solved</span>
+			                <strong class="number" data-number="200">0</strong>
+			                <span>Finished Photosessions</span>
 			              </div>
 			            </div>
 			          </div>
 			          <div class="col-xl-3 col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 			            <div class="block-18">
 			              <div class="text d-flex align-items-center">
-			                <strong class="number" data-number=>0</strong>
-
-			                <span>Pending</span>
+			                <strong class="number" data-number="200">0</strong>
+			                <span>Happy Clients</span>
 			              </div>
 			            </div>
 			          </div>
@@ -122,7 +142,7 @@
 	        </div>
 	    	</div>
 	    </section>
-			<br/><br>
+			
 	    <footer class="ftco-footer ftco-bg-dark ftco-section">
 	      <div class="container px-md-5">
 	        <div class="row mb-5">
@@ -183,7 +203,7 @@
   <script src="/static/demo/js/bootstrap-datepicker.js"></script>
   <script src="/static/demo/js/jquery.timepicker.min.js"></script>
   <script src="/static/demo/js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALHzvofs2NA_GmW_1yNSIvwAfOfm4dNN4&sensor=false"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="/static/demo/js/google-map.js"></script>
   <script src="/static/demo/js/main.js"></script>
     
