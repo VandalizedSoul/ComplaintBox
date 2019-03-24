@@ -21,4 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 	url(r'demo/',include('demo.urls')),
     url(r'office/',include('office.urls')),
+    url(r'main/',include('main.urls')),
+    url(r'login/',include('login.urls')),
+
 ]

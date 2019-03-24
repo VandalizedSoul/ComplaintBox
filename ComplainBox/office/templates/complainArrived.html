@@ -2,7 +2,7 @@
  {% extends 'base1.html' %}
  {% block body %}
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+ 
  <section class="ftco-section ftco-bread">
 	<div class="container">
 		<div class="row no-gutters slider-text justify-content-center align-items-center">
@@ -23,12 +23,12 @@
 
 	<section class="ftco-section-3">
 			<div class="photograhy">
-
+				
 				<div class="row">
-
-
+		
+		
 		{% for complain in filter.qs %}
-
+					
 						<div class="col-md-4 ftco-animate">
 								<a href="/office/single/{{complain.id}}" class="photography-entry img img-2 d-flex justify-content-start align-items-end" style="background-image: url({{complain.complain_image}});">
 									<div class="overlay"></div>
@@ -44,3 +44,4 @@
 </section>
 
 {% endblock %}
+                  

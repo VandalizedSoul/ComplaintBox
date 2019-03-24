@@ -1,0 +1,16 @@
+
+ {% extends 'base3.html' %}
+ {% block body %}
+ {% if complains %}
+ {%for i in complains%}
+ {{i.id}}
+ {%endfor%}
+	
+ {%else%}
+  
+ <h1>No complains has been timedout!</h1>
+ 
+{%endif%}
+
+{% endblock %}
+                  

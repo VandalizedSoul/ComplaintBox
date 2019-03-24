@@ -3,8 +3,9 @@
 {% block body %}
 			<section class="ftco-section">
 	      <div class="container">
+					<h2>Unlocked</h2>
 	        <div class="row">
-						{%for reward in rewards %}
+						{%for reward in reward1 %}
 	          <div class="col-md-4 d-flex align-self-stretch ftco-animate">
 	            <div class="media block-6 services py-4 d-block">
 	              <div class="d-flex justify-content-start">
@@ -16,8 +17,26 @@
 	              </div>
 	            </div>      
 	          </div>
-	          {%endfor%}
-	         
-	         </div>
+						{%endfor%}
+						</div>
+
+					
+						<h2>Locked</h2>
+	        <div class="row">
+						{%for reward in reward2 %}
+	          <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+	            <div class="media block-6 services py-4 d-block">
+	              <div class="d-flex justify-content-start">
+	              
+	              </div>
+	              <div class="media-body p-2 mt-2">
+	                <h3 class="heading mb-3">{{reward.name}}</h3>
+	                
+	              </div>
+	            </div>      
+	          </div>
+						{%endfor%}
+						</div>
+					</div>
 	    </section>
 			{% endblock %}

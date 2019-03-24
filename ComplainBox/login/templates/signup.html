@@ -1,0 +1,120 @@
+{% load static %}
+<html>
+
+  <head>
+    <title>Signup</title>
+    <!--<link rel="icon" href="imageset/favicon.png">-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="{% static "login/css/materialize.min.css" %}" >
+
+    <script src="{% static "login/js/jquery-3.2.1.min.js" %}" ></script>
+    <script src="{% static "login/js/materialize.min.js" %}" ></script>
+
+    <script src="{% static "js/script.js" %}"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems, options);
+  });
+
+  
+ 
+  </script>
+  </head>
+
+  <body>
+
+    <nav>
+		<div class="nav-wrapper teal teal">
+			<a href="#" style="align-content: center" class="brand-logo">Environment Protection</a>
+			<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+  			<!--	<li><a href="#">Home</a></li>
+  				<li><a href="#">News</a></li>
+  				<li><a href="#">Contact us</a></li>
+  				<li><a href="#">About us</a></li>
+  				<li><a href="#">FAQ</a></li> -->
+  			</ul>
+			<ul class="side-nav" id="mobile-demo">
+        <!--<li><a href="#">Home</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Contact us</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">FAQ</a></li>-->
+			</ul>
+		</div>
+  	</nav>
+
+    <div class="container center-align ">
+      <h1>Signup</h1>
+
+      
+			<div class="row">
+				<form action="/login/addUser/" method="POST" class="col s12" enctype="multipart/form-data">{% csrf_token %}
+					<div class="row">
+						
+                        <div class="input-field col s6 offset-s3">
+							<i class="material-icons prefix">account_circle</i>
+		        			<input type="text" name="name" id="name" class="validate" required>
+							<label for="name" class="active">Full Name</label>
+                        </div>
+                        
+                        <div class="input-field col s6 offset-s3">
+							<i class="material-icons prefix">account_circle</i>
+		        			<input type="date" name="birthdate" id="birthdate" class="validate" required>
+							<label for="birthdate" class="active">Birthdate</label>
+						</div>
+						
+                        <div class="input-field col s6 offset-s3">
+							<i class="material-icons prefix">Occupation</i>
+		        			<input type="text" name="occupation" id="occupation" class="validate" required>
+							<label for="occupation" class="active">Occupation</label>
+                        </div>
+                        <div class="input-field col s6 offset-s3">
+							<i class="material-icons prefix">account_circle</i>
+		        			<input type="text" name="address1" id="address1" class="validate" required>
+							<label for="address1" class="active">Address Line 1</label>
+                        </div>
+                        <div class="input-field col s6 offset-s3">
+							<i class="material-icons prefix">account_circle</i>
+		        			<input type="text" name="address2" id="address2" class="validate" required>
+							<label for="address2" class="active">Address Line 2</label>
+						</div>
+						<div class="input-field col s6 offset-s3">
+							<i class="material-icons prefix">account_circle</i>
+		        			<input type="text" name="contact" id="contact" class="validate" required>
+							<label for="contact" class="active">Contact</label>
+                        </div>
+                        <div class="input-field col s6 offset-s3">
+							<input type="file" class="form-control"  name="image" id="image"/>
+		        			
+							<label for="image" class="active">Upload Image</label>
+                        </div>
+                        <div class="input-field col s6 offset-s3">
+							<i class="material-icons prefix">account_circle</i>
+		        			<input type="text" name="username" placeholder="Enter Username" id="username" class="validate" required>
+							<label for="username" class="active">Username</label>
+                        </div>
+						<div class="input-field col s6 offset-s3">
+							<i class="material-icons prefix">vpn_key</i>
+							<input type="password" name="password" class="validate" placeholder="Enter Password" id="password" required>
+							<label for="password" class="active">Password</label>
+                        </div>
+                        <div class="input-field col s6 offset-s3">
+		        	<button type="submit" class="btn btn-2">Register</button>
+						</div>
+                    </div>
+                   
+      	</form>
+			</div>
+    </div>
+  </body>
+</html>
+
+
+
+
+		

@@ -1,0 +1,42 @@
+
+ {% extends 'base3.html' %}
+ {% block body %}
+ <script>
+    function myFunction() {
+      alert("Category added");
+    }
+    function myFunction1() {
+      alert("Category Removed");
+    }
+    </script>
+<div class="d-flex">
+	<div class=" text img p-md-5">
+		<form method="post" action="/main/addCategory/" enctype="multipart/form-data">{% csrf_token %}
+		<h2>Enter new Category</h2>
+		<input  class="form-control" placeholder="Enter category name here"  type="text" name="category">
+		<br>
+		<input type="submit" style="width: 100px;" class="mt-2 btn btn-black submit" onclick="myFunction()"  value="Add">
+	    </form>
+	  
+    </div>
+    <div class="author-info text p-4 p-md-5 mt-5 mb-5">
+		<div class="desc">
+			<h1 class="mb-4"><span>Available categories</span></h1>
+			<p class="mb-4">
+				<ul>
+                    {% for c in category %}
+                    <form method="post" action="/main/deleteCategory/" enctype="multipart/form-data">{% csrf_token %}
+                    <li>{{c.category}}</li>
+                    <input type="hidden" name="category" value="{{c.category}}" />
+                    <input type="submit" style="display:inline-block; " class="mt-2 btn btn-black submit" onclick="myFunction1()"  value="Remove">
+                    </form>
+					{% endfor %}
+				</ul>
+			</p>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}
+                  
